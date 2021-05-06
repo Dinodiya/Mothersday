@@ -79,7 +79,8 @@ function setup() {
 function draw() {
   
   background("pink");
-  text("Score: "+ score, 500,50);
+  textSize(30);
+  text("Score: "+ score, 50,50);
 
 
   if (gameState===PLAY){
@@ -129,14 +130,14 @@ else if (gameState === END) {
 
 function spawnClouds() {
   //write code here to spawn the clouds
-  if (frameCount % 60 === 0) {
+  if (frameCount % 90 === 0) {
     var cloud = createSprite(width+20,height-300,40,10);
     cloud.y = Math.round(random(80,120));
     cloud.addImage(cloudImage);
     //cloud.scale = 0.5;
     cloud.velocityX = -3;
 
-    cloud.lifetime = 500;
+    cloud.lifetime = 600;
 
     cloud.depth = mom.depth;
     mom.depth = mom.depth + 1;
@@ -147,8 +148,9 @@ function spawnClouds() {
 }
 
 function spawnChores() {
-  if(frameCount % 60 === 0) {
-    var chore = createSprite(600,height-95,20,30);
+  if(frameCount % 80 === 0) {
+    var chore = createSprite(1400,height-95,20,30);
+    
     chore.setCollider('circle',0,0,45)
     
     chore.velocityX = -(6 + 3*score/100);
@@ -156,8 +158,7 @@ function spawnChores() {
     var rand = Math.round(random(1,6));
     switch(rand) {
       case 1: chore.addImage(chore1);
-            chore1.scale = 0.5
-      break;
+            break;
       case 2: chore.addImage(chore2);
               break;
       case 3: chore.addImage(chore3);
@@ -166,7 +167,7 @@ function spawnChores() {
               break;
      case 5: chore.addImage(chore5);
               break;
-       default: break;
+    default: break;
 
    }
 
